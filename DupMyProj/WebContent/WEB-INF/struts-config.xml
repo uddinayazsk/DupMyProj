@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+
+<struts-config>
+
+    <form-beans>
+    
+       <form-bean name="LoginForm" type="com.form.LoginForm" />
+       <form-bean name="myForm" type="com.form.FileForm"/>
+       <!-- <form-bean name="myForm" type="MyModel" /> -->
+        
+    </form-beans>
+
+    <global-exceptions>
+    </global-exceptions>
+    <global-forwards>
+    </global-forwards>
+
+    <action-mappings>
+            
+     <action path="/Login" 
+     		 type="com.action.LoginAction" 
+     		 name="LoginForm"
+     		 scope="request" 
+     		 validate="false"
+     		 input="/jsp/login.jsp">
+            
+            <forward name="success" path="/jsp/fileupload.jsp" />
+            <forward name="failure" path="/jsp/login.jsp" />
+     </action>
+     <action path="/FileAction" 
+	    		type="com.action.FileAction"
+	    		name="myForm"
+	    		scope="session" 
+	    		input="/jsp/fileupload.jsp">
+	    		<forward name="success" path="/jsp/success.jsp"/>
+	    		<forward name="failure" path="/jsp/fileupload.jsp"/>
+	    		<forward name="error" path="error.jsp" />
+	    		
+    	</action>
+    	/*for prevention from browser back button*/
+     <!-- <action path="/myActionForm" 
+		    type="MyAction" 
+		    name="myForm"
+			scope="session" 
+			input="index.jsp">
+			<forward name="success" path="Success.jsp" redirect="true" />
+			<forward name="fail" path="fail.jsp" />
+			<forward name="error" path="error.jsp" />
+
+		</action>
+
+		<action path="/LoadAction" 
+		    type="LoadAction" 
+		    name="myForm"
+			scope="session" 
+			input="1st.jsp">
+			<forward name="index" path="index.jsp" />
+		</action>
+     
+ -->
+	
+     </action-mappings>
+
+
+
+    <message-resources parameter="com/resource/ApplicationResources" />
+
+
+
+</struts-config>
+
